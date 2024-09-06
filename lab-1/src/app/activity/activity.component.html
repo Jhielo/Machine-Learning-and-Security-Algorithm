@@ -1,0 +1,53 @@
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+      <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+  
+      <div class="relative px-6 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+        <div class="max-w-md mx-auto">
+          <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Diffie-Hellman Encryption/Decryption</h1>
+          </div>
+  
+          <div class="space-y-6">
+            <div>
+              <label for="fileInput" class="block text-sm font-medium text-gray-700">Input File</label>
+              <input type="file" id="fileInput" (change)="onFileSelected($event)" class="mt-1 block w-full text-sm text-gray-500
+                file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-blue-50 file:text-blue-700
+                hover:file:bg-blue-100
+              "/>
+            </div>
+  
+            <div>
+              <label for="publicKey" class="block text-sm font-medium text-gray-700">Your Public Key</label>
+              <input type="text" id="publicKey" [value]="getPublicKey()" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+            </div>
+  
+            <div>
+              <label for="otherPublicKey" class="block text-sm font-medium text-gray-700">Other's Public Key</label>
+              <input type="text" id="otherPublicKey" #otherPublicKeyInput class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+              <button (click)="generateSharedSecret(otherPublicKeyInput.value)" class="mt-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Generate Shared Secret
+              </button>
+            </div>
+  
+            <div class="flex space-x-4 justify-center">
+              <button (click)="encrypt()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                Encrypt
+              </button>
+              <button (click)="decrypt()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                Decrypt
+              </button>
+            </div>
+  
+            <div *ngIf="outputText">
+              <label for="outputText" class="block text-sm font-medium text-gray-700">Decrypted Text</label>
+              <textarea id="outputText" [value]="outputText" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
